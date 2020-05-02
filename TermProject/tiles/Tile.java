@@ -10,7 +10,8 @@ public class Tile extends Rectangle {
     private boolean isStatic;
     private Image texture;
 
-    public Tile(int id,int x, int y, boolean isStatic){
+    public Tile(int id,int x, int y, boolean isStatic) {
+    	super(100, 100);
         this.id = id;
         this.xCord = x;
         this.yCord = y;
@@ -19,7 +20,7 @@ public class Tile extends Rectangle {
         setStroke(Color.WHITE);
     }
 
-    public void setFill(){
+    public void setFill() {
         this.setFill(new ImagePattern(this.texture));
     }
 
@@ -53,7 +54,6 @@ public class Tile extends Rectangle {
     public String toString(){
         return "ID: " + id +
                 "\nAt : " + xCord + "," + yCord;
-
     }
 
 }
