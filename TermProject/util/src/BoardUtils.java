@@ -2,24 +2,21 @@ public class BoardUtils {
 
     public static final int BOARD_SIZE = 400;
 
-    public static Tile getTileFromCursor(Tile[][] board, double xLoc, double yLoc){
-
-        int xCord = (int) (xLoc -1) / (BOARD_SIZE / 4);
-        int yCord = (int) (yLoc -1) / (BOARD_SIZE / 4);
-
-
-
-
+    public static Tile getTileFromCursor(Tile[][] board, double xLoc, double yLoc) {
+        int xCord = (int) (xLoc - 1) / (BOARD_SIZE / 4);
+        int yCord = (int) (yLoc - 1) / (BOARD_SIZE / 4);
+        if(!checkInside()) {
+        	return null;
+        }
         return board[xCord][yCord];
     }
 
-    public boolean checkInside(int x, int y){
-
-      //?
-
+    private static boolean checkInside(int x, int y) {
+    	boolean false_case = x < 0 || x > 3 || y < 0 || y > 3;
+    	boolean return_bool = false_case ? false : true;
     }
 
-    public static boolean checkSwap(Tile tile1, Tile tile2){
+    public static boolean checkSwap(Tile tile1, Tile tile2) {
         boolean temp = false;
         if(!tile1.isStatic() && !tile2.isStatic())
             temp = true;
@@ -31,13 +28,6 @@ public class BoardUtils {
             temp = false;
 
             return temp;
-
     }
-
-
-
-
-
-
 
 }
