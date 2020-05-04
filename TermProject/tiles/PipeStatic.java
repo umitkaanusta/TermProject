@@ -7,10 +7,10 @@ public class PipeStatic extends Pipe {
 
     private boolean isStarter;
     private boolean isEnd;
-    private boolean isUp;
-    private boolean isRight;
+    private Boolean isUp = null;
+    private Boolean isRight = null;
 
-    public PipeStatic(int id, int x, int y, boolean isStarter, boolean isEnd, boolean isUp, boolean isRight) {
+    public PipeStatic(int id, int x, int y, boolean isStarter, boolean isEnd, Boolean isUp, Boolean isRight) {
 
         super(id, x, y, true, !isRight);
         this.isUp = isUp;
@@ -23,27 +23,27 @@ public class PipeStatic extends Pipe {
     @Override
     public void setFill() {
         // End
-        if (isEnd && isRight)
+        if (isEnd && isRight && isUp == null)
             this.setFill(new ImagePattern(new Image(new File("img/EndRight.gif").toURI().toString())));
-        else if (isEnd && !isRight)
+        else if (isEnd && !isRight && isUp == null)
             this.setFill(new ImagePattern(new Image(new File("img/EndLeft.gif").toURI().toString())));
-        else if (isEnd && isUp)
+        else if (isEnd && isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/EndUp.gif").toURI().toString())));
-        else if (isEnd && !isUp)
+        else if (isEnd && !isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/EndDown.gif").toURI().toString())));
             // Starter
-        else if (isStarter && isRight)
+        else if (isStarter && isRight && isUp == null)
             this.setFill(new ImagePattern(new Image(new File("img/StarterRight.gif").toURI().toString())));
-        else if (isStarter && !isRight)
+        else if (isStarter && !isRight && isUp == null)
             this.setFill(new ImagePattern(new Image(new File("img/StarterLeft.gif").toURI().toString())));
-        else if (isStarter && isUp)
+        else if (isStarter && isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/StarterUp.gif").toURI().toString())));
-        else if (isStarter && !isUp)
+        else if (isStarter && !isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/StarterDown.gif").toURI().toString())));
             // Calling PipeStatic directly from PipeStatic, you can call it from Pipe class too
-        else if (!isEnd && !isStarter && isRight)
+        else if (!isEnd && !isStarter && isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/PipeStaticVertical.gif").toURI().toString())));
-        else if (!isEnd && !isStarter && !isRight)
+        else if (!isEnd && !isStarter && !isUp && isRight == null)
             this.setFill(new ImagePattern(new Image(new File("img/PipeStaticHorizontal.gif").toURI().toString())));
         else if (!isEnd && !isStarter && isRight && isUp)
             this.setFill(new ImagePattern(new Image(new File("img/PipeStatic01.gif").toURI().toString())));
@@ -65,19 +65,19 @@ public class PipeStatic extends Pipe {
         isEnd = end;
     }
 
-    public boolean isUp() {
+    public Boolean isUp() {
         return isUp;
     }
 
-    public void setUp(boolean up) {
+    public void setUp(Boolean up) {
         isUp = up;
     }
 
-    public boolean isRight() {
+    public Boolean isRight() {
         return isRight;
     }
 
-    public void setRight(boolean right) {
+    public void setRight(Boolean right) {
         isRight = right;
     }
 
