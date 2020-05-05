@@ -1,3 +1,5 @@
+package TermProject.tiles;
+
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
@@ -5,7 +7,7 @@ import java.io.File;
 
 public class Empty extends Tile {
 
-    Empty(int id, int x, int y, boolean isStatic) {
+    public Empty(int id, int x, int y, boolean isStatic) {
         super(id, x, y, isStatic);
         setFill();
     }

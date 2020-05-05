@@ -1,3 +1,5 @@
+package TermProject.tiles;
+
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
@@ -5,7 +7,7 @@ import java.io.File;
 
 public class Free extends Empty {
 
-    Free(int id, int x, int y) {
+    public Free(int id, int x, int y) {
         super(id, x, y, true);
         setFill();
     }
