@@ -1,11 +1,8 @@
 package TermProject.gui;
 
-import TermProject.tiles.Free;
-import TermProject.tiles.Tile;
-import TermProject.util.AnimationUtils;
-import TermProject.util.BoardUtils;
-import TermProject.util.LevelCreator;
-import TermProject.util.Main;
+import TermProject.tiles.*;
+import TermProject.util.*;
+import TermProject.Main;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -26,18 +23,15 @@ public class IngameGui {
 
     private ArrayList<Tile> swapArray;
 
-    private double oldX;
-    private double oldY;
+    private double oldX = 0;
+    private double oldY = 0;
 
 
-    IngameGui(Tile[][] tiles){
-
+    IngameGui(Tile[][] tiles) {
         this.tiles = tiles;
-
         Pane root = new Pane();
-
+        root.setStyle("-fx-background-color:#000000");
         gameScene = new Scene(root,600,500);
-
         gamePane = new Pane();
         int BOARD_SIZE = BoardUtils.BOARD_SIZE;
         root.setPrefSize(BOARD_SIZE,BOARD_SIZE);
@@ -63,37 +57,26 @@ public class IngameGui {
 
             }
         }
-
         swapArray = new ArrayList<>();
-
-
     }
 
-    public void showGameGui(Stage stage){
+    public void showGameGui(Stage stage) {
         showGame();
         showStatsPane();
         stage.setScene(gameScene);
         stage.show();
-
-
     }
 
-    private void showStatsPane(){
-
-
-        Text level = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50, "LEVEL :" + Main.LEVEL);
-
+    private void showStatsPane() {
+        Text level = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50, "LEVEL :" + TermProject.Main.LEVEL);
         level.setTextAlignment(TextAlignment.CENTER);
         level.setFill(Color.RED);
-
-        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES: " + Main.NUMBER_OF_MOVES);
-
+        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES: " + TermProject.Main.NUMBER_OF_MOVES);
         numberOfMoves.setTextAlignment(TextAlignment.CENTER);
         numberOfMoves.setFill(Color.RED);
-
     }
 
-    private void showGame(){
+    private void showGame() {
 
         for(int row = 0; row < tiles.length; row++){
             for (int col = 0; col < tiles[row].length; col++){
@@ -143,82 +126,44 @@ public class IngameGui {
 
                             }
                             else{
-                                Tile[][] nextLevel = LevelCreator.createLevel(++Main.LEVEL);
-
+                                try {
+									Tile[][] nextLevel = LevelCreator.createLevel(++Main.LEVEL);
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
                             }
-
-
-
                         }
-
-
-
-
-
-
-
-
-
-
                     }
-
-
-
-
                 });
-
-
             }
         }
-
     }
 
     private void swapTiles(Tile tile1, Tile tile2){
-
-
         int xCord1 = tile1.getxCord();
         int yCord1 = tile1.getYCord();
-
         int xCord2 = tile2.getxCord();
         int yCord2 = tile2.getYCord();
 
         if(!(xCord1 == xCord2 && yCord1 == yCord2)){
             Main.NUMBER_OF_MOVES.setValue(Main.NUMBER_OF_MOVES.add(1).getValue());
-
             gamePane.getChildren().removeAll(tile1,tile2);
-
+            
             tile1.setLayoutX(tile2.getLayoutX());
             tile1.setLayoutY(tile2.getLayoutY());
-
             tile2.setLayoutX(oldX);
             tile2.setLayoutY(oldY);
 
             gamePane.getChildren().addAll(tile1,tile2);
-
             tile1.setxCord(xCord2);
             tile1.setyCord(yCord2);
-
             tile2.setxCord(xCord1);
             tile2.setyCord(yCord2);
 
             tiles[xCord1][yCord1] = tile2;
             tiles[xCord2][yCord2] = tile1;
-
             swapArray.clear();
-
-
-
         }
-
-
     }
-
-
-
-
-
-
-
-
-
 }

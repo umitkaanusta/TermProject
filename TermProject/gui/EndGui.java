@@ -1,8 +1,8 @@
 package TermProject.gui;
 
 import TermProject.util.LevelCreator;
-import TermProject.util.Main;
-import javafx.animation.Animation;
+import TermProject.Main;
+import TermProject.util.Animation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -36,7 +36,12 @@ public class EndGui {
         restartButton.setOnMousePressed(e -> {
             Main.LEVEL = 1;
             Main.NUMBER_OF_MOVES.setValue(0);
-            new MainGui(LevelCreator.createLevel(1));
+            Animation.getPaths().clear();
+            try {
+				new MainGui(LevelCreator.createLevel(1));
+			} catch (FileNotFoundException E) {
+				E.printStackTrace();
+			}
 
         });
 
@@ -45,19 +50,8 @@ public class EndGui {
         });
 
         endPane.getChildren().addAll(hBox);
-
         Main.getStage().setScene(endScene);
         Main.getStage().show();
 
-
-
-
-
-
-
-
-
-
     }
-
 }
