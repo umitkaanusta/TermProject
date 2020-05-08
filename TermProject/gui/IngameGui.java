@@ -5,6 +5,7 @@ import TermProject.util.*;
 import TermProject.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -72,15 +73,26 @@ public class IngameGui {
         Text level = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50, "LEVEL :" + TermProject.Main.LEVEL);
         level.setTextAlignment(TextAlignment.CENTER);
         level.setFill(Color.RED);
-        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES : " + TOTAL_MOVES);
+        // Write "MOVES"
+        Text moves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES: ");
+        moves.setTextAlignment(TextAlignment.CENTER);
+        moves.setFill(Color.RED);
+        // Show the number of moves
+        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES : " + Main.NumberOfMoves);
         numberOfMoves.setTextAlignment(TextAlignment.CENTER);
         numberOfMoves.setFill(Color.RED);
+        numberOfMoves.textProperty().bind(Main.NumberOfMoves.asString());
+        
+        HBox hbox = new HBox();
+        hbox.setPrefSize(60, 60);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.getChildren().addAll(moves, numberOfMoves);
 
         VBox vbox = new VBox();
-        vbox.setPrefSize(160,400);
+        vbox.setPrefSize(160, 400);
         vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(level,numberOfMoves);
-
+        vbox.getChildren().addAll(level, hbox);
+        
         statsPane.getChildren().add(vbox);
     }
 
@@ -142,13 +154,12 @@ public class IngameGui {
 
                             swapArray.add(tile2);
                             swapTiles(swapArray.get(0), swapArray.get(1));
-
-
+                        	Main.NumberOfMoves.setValue(Main.NumberOfMoves.getValue() + 1);
 
 
                             if (AnimationUtils.checkPath(tiles)) {
-                                TOTAL_MOVES += Main.NumberOfMoves;
                                 Animation.playAnimation(gamePane, AnimationUtils.getPaths());
+                                TOTAL_MOVES += Main.NumberOfMoves.getValue();
 
                                 if (Main.LEVEL >= Main.MAX_LEVEL) {
                                     Animation.getPathTransition().setOnFinished(e2 -> {
@@ -161,7 +172,7 @@ public class IngameGui {
                                     Animation.getPathTransition().setOnFinished(e2 -> {
                                         IngameGui nextLevelGui = new IngameGui(nextLevel);
                                         nextLevelGui.showGameGui(Main.getStage());
-                                        Main.NumberOfMoves = 0;
+                                        Main.NumberOfMoves.set(0);
 
                                     });
                                 }
@@ -187,7 +198,6 @@ public class IngameGui {
         int yCord2 = tile2.getYCord();
 
         if(!(xCord1 == xCord2 && yCord1 == yCord2)){
-            Main.NumberOfMoves++;
             gamePane.getChildren().removeAll(tile1,tile2);
 
             tile1.setLayoutX(tile2.getLayoutX());
@@ -205,10 +215,10 @@ public class IngameGui {
             tiles[xCord2][yCord2] = tile1;
             swapArray.clear();
         }
-        else
-            //tile2.relocate(oldX,oldY);
+        else {
         tile2.setLayoutX(oldX);
         tile2.setLayoutY(oldY);
+        }
     }
 }
 

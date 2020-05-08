@@ -35,7 +35,7 @@ public class EndGui {
 
         restartButton.setOnMousePressed(e -> {
             Main.LEVEL = 1;
-            Main.NumberOfMoves = 0;
+            Main.NumberOfMoves.set(0);
             Animation.getPaths().clear();
             new MainGui(LevelCreator.createLevel(1));
 
