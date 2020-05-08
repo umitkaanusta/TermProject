@@ -1,5 +1,5 @@
 package TermProject.util;
 
 enum LastMove {
-	RIGHT, LEFT, UP, DOWN;
+    RIGHT, LEFT, UP, DOWN;
 }
