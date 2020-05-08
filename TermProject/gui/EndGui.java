@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import java.io.FileNotFoundException;
+
 
 
 public class EndGui {
@@ -35,19 +35,13 @@ public class EndGui {
 
         restartButton.setOnMousePressed(e -> {
             Main.LEVEL = 1;
-            Main.NUMBER_OF_MOVES.setValue(0);
+            Main.NumberOfMoves = 0;
             Animation.getPaths().clear();
-            try {
-				new MainGui(LevelCreator.createLevel(1));
-			} catch (FileNotFoundException E) {
-				E.printStackTrace();
-			}
+            new MainGui(LevelCreator.createLevel(1));
 
         });
 
-        exitButton.setOnMousePressed(e ->{
-            Main.getStage().close();
-        });
+        exitButton.setOnMousePressed(e -> Main.getStage().close());
 
         endPane.getChildren().addAll(hBox);
         Main.getStage().setScene(endScene);

@@ -13,15 +13,15 @@ public class MainGui {
 
     public MainGui(Tile[][] tiles) {
         Pane mainPane = new Pane();
-        mainPane.setStyle("-fx-background-color:#f84cff");
+
         Scene mainScene = new Scene(mainPane,600,500);
         mainPane.setPrefSize(600,500);
         BorderPane borderPane = new BorderPane();
         Button playButton = new Button("PLAY");
-        
-        playButton.setDefaultButton(true);
+
+
         borderPane.setMinSize(600,500);
-        borderPane.setBottom(playButton);
+        borderPane.setCenter(playButton);
         playButton.setAlignment(Pos.CENTER);
         mainPane.getChildren().addAll(borderPane);
         playButton.setOnAction(e ->{
