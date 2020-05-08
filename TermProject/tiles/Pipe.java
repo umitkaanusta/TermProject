@@ -17,11 +17,11 @@ public class Pipe extends Tile {
     @Override
     public void setFill() {
         if(isVertical() && !isStatic())
-            this.setFill(new ImagePattern(new Image(new File("img/PipeHorizontal.gif").toURI().toString())));
+            this.setFill(new ImagePattern(new Image(new File("img/PipeVertical.gif").toURI().toString())));
         else if(isVertical && isStatic())
             this.setFill(new ImagePattern(new Image(new File("img/PipeStaticVertical.gif").toURI().toString())));
         else if(!isVertical && !isStatic())
-            this.setFill(new ImagePattern(new Image(new File("img/PipeVertical.gif").toURI().toString())));
+            this.setFill(new ImagePattern(new Image(new File("img/PipeHorizontal.gif").toURI().toString())));
         else if(!isVertical && isStatic())
             this.setFill(new ImagePattern(new Image(new File("img/PipeStaticHorizontal.gif").toURI().toString())));
     }

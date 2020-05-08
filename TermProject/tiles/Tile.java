@@ -13,7 +13,7 @@ public class Tile extends Rectangle {
     private Image texture;
 
     public Tile(int id,int x, int y, boolean isStatic) {
-    	super(100, 100);
+        super(100, 100);
         this.id = id;
         this.xCord = x;
         this.yCord = y;
