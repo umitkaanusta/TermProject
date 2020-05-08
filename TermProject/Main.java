@@ -1,7 +1,7 @@
 package TermProject;
 
 
-import java.io.FileNotFoundException;
+
 
 import TermProject.gui.MainGui;
 import TermProject.tiles.Tile;
@@ -22,11 +22,12 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage) {
         Main.primaryStage = primaryStage;
-        Tile[][] grid = TermProject.util.LevelCreator.createLevel(LEVEL);
-        new MainGui(grid);
+        Tile[][] board = TermProject.util.LevelCreator.createLevel(LEVEL);
+        new MainGui(board);
         primaryStage.setResizable(false);
+        primaryStage.setTitle("TileGame");
 
     }
 
