@@ -19,9 +19,9 @@ public class Animation {
     private static ArrayList<PathElement> paths;
 
     public static void playAnimation(Pane pane, ArrayList<PathElement> paths) {
-        // Create the "animating" object
+    	// Create the "animating" object
         Animation.paths = paths;
-        Circle ball = new Circle(20, 20, 20);
+        Circle ball = new Circle(45, 45, 13);
         ball.setFill(Color.YELLOW);
 
         // Find the starter tile "from pane" to start the animation

@@ -1,7 +1,6 @@
 package TermProject.util;
 
 import TermProject.tiles.Free;
-import TermProject.tiles.PipeStatic;
 import TermProject.tiles.Tile;
 
 public class BoardUtils {

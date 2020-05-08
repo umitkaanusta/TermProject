@@ -3,10 +3,8 @@ package TermProject.util;
 import TermProject.tiles.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class LevelCreator {
@@ -38,6 +36,7 @@ public class LevelCreator {
                 }
                 createTileFromInput(line, tiles);
             }
+            sc.close();
         } catch(IOException e) {
             System.out.println("There is a problem with the input file. Try again.");
         }
