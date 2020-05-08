@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-    public static IntegerProperty NUMBER_OF_MOVES = new SimpleIntegerProperty(0);
+    public static int NumberOfMoves = 0;
     public static final int MAX_LEVEL = TermProject.util.LevelCreator.getMaxLevel(); // Read the number of files in levels folder
     public static int LEVEL = 1;
     private static Stage primaryStage;
