@@ -3,12 +3,15 @@ package TermProject.gui;
 import TermProject.util.LevelCreator;
 import TermProject.Main;
 import TermProject.util.Animation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 
 public class EndGui {
@@ -16,24 +19,39 @@ public class EndGui {
     EndGui(){
 
         Pane endPane = new Pane();
-        endPane.setStyle("-fx-background-color:#f84cff");
+
 
         Scene endScene = new Scene(endPane,600,500);
         endPane.setPrefSize(600,500);
 
-        Button restartButton = new Button("PLAY AGAIN");
-        Button exitButton = new Button("EXIT THE GAME");
+        Text congrats = new Text("CONGRATULATIONS!");
+        congrats.setX(10);
+        congrats.setY(150);
+        congrats.setFont(Font.font("OCR A Extended",60));
 
-        restartButton.setPrefSize(160,25);
-        exitButton.setPrefSize(160,25);
+        Text move = new Text("Total Moves: " + IngameGui.TOTAL_MOVES);
+        move.setX(230);
+        move.setY(225);
+        move.setFont(Font.font("OCR A Extended",15));
 
 
-        HBox hBox = new HBox(restartButton,exitButton);
+
+
+
+        Button exitBt = new Button("EXIT THE GAME");
+        exitBt.setPrefSize(150,25);
+        Button playBt = new Button("PLAY AGAIN ");
+        playBt.setPrefSize(150,25);
+
+
+
+        HBox hBox = new HBox(exitBt,playBt);
         hBox.setSpacing(5);
-        hBox.setLayoutX(endPane.getMaxWidth() / 2 - 180);
-        hBox.setLayoutY(endPane.getMaxHeight() - 40);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setLayoutX(150);
+        hBox.setLayoutY(250);
 
-        restartButton.setOnMousePressed(e -> {
+        playBt.setOnMousePressed(e -> {
             Main.LEVEL = 1;
             Main.NumberOfMoves.set(0);
             Animation.getPaths().clear();
@@ -41,9 +59,9 @@ public class EndGui {
 
         });
 
-        exitButton.setOnMousePressed(e -> Main.getStage().close());
+        exitBt.setOnMousePressed(e -> Main.getStage().close());
 
-        endPane.getChildren().addAll(hBox);
+        endPane.getChildren().addAll(hBox,move,congrats);
         Main.getStage().setScene(endScene);
         Main.getStage().show();
 

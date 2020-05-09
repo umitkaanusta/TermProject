@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -72,17 +73,17 @@ public class IngameGui {
     private void showStatsPane() {
         Text level = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50, "LEVEL :" + TermProject.Main.LEVEL);
         level.setTextAlignment(TextAlignment.CENTER);
-        level.setFill(Color.RED);
+        level.setFont(Font.font("OCR A Extended",15));
         // Write "MOVES"
-        Text moves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES: ");
+        Text moves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES :");
         moves.setTextAlignment(TextAlignment.CENTER);
-        moves.setFill(Color.RED);
+        moves.setFont(Font.font("OCR A Extended",15));
         // Show the number of moves
-        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES : " + Main.NumberOfMoves);
+        Text numberOfMoves = new Text(statsPane.getPrefWidth() / 2 - 50, statsPane.getPrefHeight() / 4 - 50,"MOVES :" + Main.NumberOfMoves);
         numberOfMoves.setTextAlignment(TextAlignment.CENTER);
-        numberOfMoves.setFill(Color.RED);
+        numberOfMoves.setFont(Font.font("OCR A Extended",15));
         numberOfMoves.textProperty().bind(Main.NumberOfMoves.asString());
-        
+
         HBox hbox = new HBox();
         hbox.setPrefSize(60, 60);
         hbox.setAlignment(Pos.CENTER);
@@ -92,7 +93,7 @@ public class IngameGui {
         vbox.setPrefSize(160, 400);
         vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().addAll(level, hbox);
-        
+
         statsPane.getChildren().add(vbox);
     }
 
@@ -126,8 +127,8 @@ public class IngameGui {
 
 
                     if(!(tile instanceof Free) && !(tile.isStatic()))
-                       tile.relocate(e.getSceneX() - tile.getWidth() / 2 - 10, e.getSceneY() - tile.getHeight() / 2 - 10);
-                   // tile.setLayoutX(e.getSceneX() - tile.getWidth() / 2 - 10);
+                        tile.relocate(e.getSceneX() - tile.getWidth() / 2 - 10, e.getSceneY() - tile.getHeight() / 2 - 10);
+                    // tile.setLayoutX(e.getSceneX() - tile.getWidth() / 2 - 10);
                     //tile.setLayoutY(e.getSceneY() - tile.getHeight() / 2 - 10);
 
 
@@ -154,7 +155,7 @@ public class IngameGui {
 
                             swapArray.add(tile2);
                             swapTiles(swapArray.get(0), swapArray.get(1));
-                        	Main.NumberOfMoves.setValue(Main.NumberOfMoves.getValue() + 1);
+                            Main.NumberOfMoves.setValue(Main.NumberOfMoves.getValue() + 1);
 
 
                             if (AnimationUtils.checkPath(tiles)) {
@@ -164,6 +165,7 @@ public class IngameGui {
                                 if (Main.LEVEL >= Main.MAX_LEVEL) {
                                     Animation.getPathTransition().setOnFinished(e2 -> {
                                         new EndGui();
+
                                     });
 
                                 }
@@ -178,7 +180,7 @@ public class IngameGui {
                                 }
                             }
                         }
-                }
+                    }
                     else {
                         //tile.relocate(oldX, oldY);
                         tile.setLayoutX(oldX);
@@ -187,7 +189,7 @@ public class IngameGui {
                     }
                 });
 
-                }
+            }
         }
     }
 
@@ -216,15 +218,8 @@ public class IngameGui {
             swapArray.clear();
         }
         else {
-        tile2.setLayoutX(oldX);
-        tile2.setLayoutY(oldY);
+            tile2.setLayoutX(oldX);
+            tile2.setLayoutY(oldY);
         }
     }
 }
-
-
-
-
-
-
-
